@@ -1,0 +1,12 @@
+server:
+  port: 8010
+  tomcat:
+    basedir: E://temp
+spring:
+  application:
+    name: provider
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

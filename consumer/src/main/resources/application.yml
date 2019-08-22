@@ -1,5 +1,7 @@
 server:
   port: 8011
+  tomcat:
+    basedir: E://temp
 spring:
   application:
     name: consumer
@@ -9,12 +11,34 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-# 配置请求GZIP压缩
 feign:
   compression:
     request:
       enabled: true
-      mime-types: text/xml,application/xml,application/json # 配置压缩支持的MIME TYPE
-      min-request-size: 2048 # 配置压缩数据大小的下限
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
     response:
-      enabled: true # 配置响应GZIP压缩
+      enabled: true
+  hystrix:
+    enabled: true
+
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+ribbon:
+  ConnectTimeout: 6000
+  ReadTimeout: 6000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000

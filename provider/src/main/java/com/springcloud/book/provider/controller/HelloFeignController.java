@@ -19,4 +19,9 @@ public class HelloFeignController {
         return helloFeignService.searchRepo(queryStr);
     }
 
+    @GetMapping(value = "/feign")
+    public String helloFeign() {
+        return "9527";
+    }
+
 }

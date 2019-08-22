@@ -1,4 +1,4 @@
-package com.springcloud.book.consumer.config;
+package com.springcloud.book.consumer.interceptor;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
