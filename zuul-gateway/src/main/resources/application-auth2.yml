@@ -1,0 +1,32 @@
+
+########################## 服务忽略、路径忽略、前缀、重定向问题 ##########################
+
+zuul:
+#  ignored-services: client-b    #忽略的服务，防服务侵入
+#  ignored-patterns: /**/div/**  #忽略的接口，屏蔽接口
+#  prefix: /pre                  #前缀
+#  add-host-header: true         #重定向header问题
+  routes:
+    client: /client/**
+    consumer: /consumer/**
+    provider: /provider/**
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  security:
+#    enabled: false
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      access-token-uri: http://localhost:7777/uaa/oauth/token #令牌端点
+      user-authorization-uri: http://localhost:7777/uaa/oauth/authorize #授权端点
+      client-id: zuul_server #OAuth2客户端ID
+      client-secret: secret #OAuth2客户端密钥
+    resource:
+      jwt:
+        key-value: springcloud123 #使用对称加密方式，默认算法为HS256

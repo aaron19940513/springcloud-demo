@@ -15,11 +15,9 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
-/**
- * Created by caibosi on 2018-06-26.
- */
-@Profile({"https"})
-@Configuration
+
+//@Profile({"https"})
+//@Configuration
 public class EurekaHttpsClientConfig {
 
     @Value("${eureka.client.ssl.key-store}")

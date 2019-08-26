@@ -39,4 +39,9 @@ public class TestController {
         return " From Port: " + request.getServerPort() + ", Result: " + (a + b);
 
     }
+
+    @GetMapping("/div")
+    public Integer div(Integer a, Integer b){
+        return a / b;
+    }
 }
