@@ -17,7 +17,7 @@ public class UserContextInterceptor implements HandlerInterceptor {
     private static final Logger log = LoggerFactory.getLogger(UserContextInterceptor.class);
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse respone, Object arg2) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
         User user = new User(HttpConvertUtil.httpRequestToMap(request));
         if (StringUtils.isEmpty(user.getUserId()) && StringUtils.isEmpty(user.getUserName())) {
             log.error("the user is null, please access from gateway or check user info");
@@ -28,13 +28,13 @@ public class UserContextInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse respone, Object arg2, ModelAndView arg3)
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView arg3)
         throws Exception {
         // DOING NOTHING
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse respone, Object arg2, Exception arg3)
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object arg2, Exception arg3)
         throws Exception {
         UserContextHolder.shutdown();
     }

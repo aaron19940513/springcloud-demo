@@ -1,0 +1,44 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      routes: #当访问http://localhost:8080/baidu,直接转发到https://www.baidu.com/
+        - id: baidu_route
+          uri: http://baidu.com:80/
+          predicates:
+            - Path=/baidu
+        - id: baidu_route
+          uri: http://www.baidu.com
+          predicates:
+            - Path=/baidu/test/**
+          filters:
+            - StripPrefix=2
+        - id: prefix_route
+          uri: http://localhost:8081/test/Hystrix?isSleep=true
+          predicates:
+            - Path=/test/Hystrix
+          filters:
+            - name: Hystrix # Hystrix Filter的名称
+              args: # Hystrix配置参数
+                name: fallbackcmd #HystrixCommand的名字
+                fallbackUri: forward:/fallback #fallback对应的uri
+
+logging: ## Spring Cloud Gateway的日志配置
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false

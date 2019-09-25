@@ -4,8 +4,14 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: '*'
+      label: master
+      name: config-info
+      profile: dev
+
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
