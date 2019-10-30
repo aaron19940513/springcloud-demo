@@ -1,0 +1,12 @@
+server:
+  port: 8020
+  tomcat:
+    basedir: E://temp
+spring:
+  application:
+    name: log-server
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -24,6 +24,7 @@
         <module>consumer</module>
         <module>provider</module>
         <module>hystrix-dashboard</module>
+        <module>log-manager</module>
     </modules>
 
     <build>

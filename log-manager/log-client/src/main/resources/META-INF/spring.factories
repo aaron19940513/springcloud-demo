@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.springcloud.book.aop.AopConfig,\
+  com.springcloud.book.aop.AspectConfig
